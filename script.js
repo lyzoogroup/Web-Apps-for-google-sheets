@@ -1,20 +1,35 @@
-const productMap = {
-  "MRA TRADERS LIMITED": {
-    "Product 1": ["SKU-001", "SKU-002"],
-    "Product 2": ["SKU-003"]
-  },
-  "LYZOO GROUP LTD": {
-    "Product A": ["SKU-A1", "SKU-A2"],
-    "Product B": ["SKU-B1"]
-  },
-  "KEWY LTD": {
-    "Product X": ["SKU-X1", "SKU-X2", "SKU-X3"]
-  }
-};
+let productMap = {};
 
 const accountSelect = document.getElementById('account');
 const productSelect = document.getElementById('product');
 const skuSelect = document.getElementById('sku');
+
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzJsnIHZ0BYjVt4Qhb2cdeH04Yu2pxF8sU0sHh0IASClvnk0nKIJq4-9vERh1ai3R_PrA/exec';
+
+// Fetch data from Google Sheet on load
+fetch(WEB_APP_URL)
+  .then(res => res.json())
+  .then(res => {
+    if (res.result === 'success') {
+      productMap = res.data;
+      populateAccounts();
+    } else {
+      document.getElementById('status').textContent = '❌ Failed to load data.';
+    }
+  })
+  .catch(err => {
+    document.getElementById('status').textContent = '❌ ' + err;
+  });
+
+function populateAccounts() {
+  accountSelect.innerHTML = '<option value="">Select account</option>';
+  Object.keys(productMap).forEach(account => {
+    const option = document.createElement('option');
+    option.value = account;
+    option.textContent = account;
+    accountSelect.appendChild(option);
+  });
+}
 
 accountSelect.addEventListener('change', () => {
   const selectedAccount = accountSelect.value;
@@ -58,8 +73,6 @@ document.getElementById('entryForm').addEventListener('submit', e => {
   payload.append('sku', data.get('sku'));
   payload.append('quantity', data.get('quantity'));
   payload.append('unitCost', data.get('unitCost'));
-
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx4zUIoMAKdBtVX4F5LMNYk7ePRu_d_Wfx5zJFVHINN2ZNeMb2LRPOoFKPhRckz2B9c7Q/exec';
 
   document.getElementById('status').textContent = '⏳ Submitting...';
 
