@@ -3,18 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Submit Info</title>
+  <title>Inventory Entry</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Submit Your Info</h1>
+    <h1>Inventory Entry Form</h1>
     <form id="entryForm">
-      <label for="name">Name:</label>
-      <input name="name" type="text" id="name" placeholder="Your name" required />
+      <label for="employee">Employee Name:</label>
+      <input name="employee" type="text" id="employee" placeholder="Employee name" required />
 
-      <label for="email">Email:</label>
-      <input name="email" type="email" id="email" placeholder="Your email" required />
+      <label for="account">Account:</label>
+      <input name="account" type="text" id="account" placeholder="Account name" required />
+
+      <label for="product">Product:</label>
+      <input name="product" type="text" id="product" placeholder="Product name" required />
+
+      <label for="sku">SKU:</label>
+      <input name="sku" type="text" id="sku" placeholder="Stock Keeping Unit" required />
+
+      <label for="quantity">Quantity:</label>
+      <input name="quantity" type="number" id="quantity" placeholder="Quantity" required />
+
+      <label for="unitCost">Unit Cost:</label>
+      <input name="unitCost" type="number" step="0.01" id="unitCost" placeholder="Unit cost" required />
 
       <button type="submit">Submit</button>
     </form>
