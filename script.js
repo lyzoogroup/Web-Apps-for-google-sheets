@@ -15,7 +15,7 @@ document.getElementById('entryForm').addEventListener('submit', e => {
     payload.append('fileName', data.get('file').name);
 
     // 🔑 IMPORTANT: Replace this with your own Web App URL!
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw-X8qSCpxslWyvitSqGNOCO8vrykW0R7hYpM35mW4PO-HDu0Y8rbU0ynXEPmBopR3_0g/exec';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxoTxQv1Mq4KLA6UA8KJ7XvWcq1yyRyKBbXPzCridXkm2v2vL8d5T_Q0yKwQvX2sGguhg/exec';
 
     fetch(WEB_APP_URL, {
       method: 'POST',
