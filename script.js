@@ -11,7 +11,7 @@ document.getElementById('entryForm').addEventListener('submit', e => {
   payload.append('quantity', data.get('quantity'));
   payload.append('unitCost', data.get('unitCost'));
 
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzGjSlXR_Dze4brHfDb9EpfaoVZcpHCS9lH6xqlSBTVplPX25Yv81tTKSIH4QJNkIHdtw/exec';
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw-X8qSCpxslWyvitSqGNOCO8vrykW0R7hYpM35mW4PO-HDu0Y8rbU0ynXEPmBopR3_0g/exec';
 
   document.getElementById('status').textContent = '⏳ Submitting...';
 
