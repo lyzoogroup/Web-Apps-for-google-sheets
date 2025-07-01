@@ -11,16 +11,30 @@
     <h1>Inventory Entry Form</h1>
     <form id="entryForm">
       <label for="employee">Employee Name:</label>
-      <input name="employee" type="text" id="employee" placeholder="Employee name" required />
+      <select name="employee" id="employee" required>
+        <option value="">Select employee</option>
+        <option value="Shahroz">Shahroz</option>
+        <option value="Ali">Ali</option>
+        <option value="Nida">Nida</option>
+      </select>
 
       <label for="account">Account:</label>
-      <input name="account" type="text" id="account" placeholder="Account name" required />
+      <select name="account" id="account" required>
+        <option value="">Select account</option>
+        <option value="MRA TRADERS LIMITED">MRA TRADERS LIMITED</option>
+        <option value="LYZOO GROUP LTD">LYZOO GROUP LTD</option>
+        <option value="KEWY LTD">KEWY LTD</option>
+      </select>
 
       <label for="product">Product:</label>
-      <input name="product" type="text" id="product" placeholder="Product name" required />
+      <select name="product" id="product" required>
+        <option value="">Select product</option>
+      </select>
 
       <label for="sku">SKU:</label>
-      <input name="sku" type="text" id="sku" placeholder="Stock Keeping Unit" required />
+      <select name="sku" id="sku" required>
+        <option value="">Select SKU</option>
+      </select>
 
       <label for="quantity">Quantity:</label>
       <input name="quantity" type="number" id="quantity" placeholder="Quantity" required />
