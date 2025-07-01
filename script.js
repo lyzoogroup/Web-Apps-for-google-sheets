@@ -3,33 +3,25 @@ document.getElementById('entryForm').addEventListener('submit', e => {
   const form = e.target;
   const data = new FormData(form);
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    const [meta, blobData] = reader.result.split(',');
+  const payload = new URLSearchParams();
+  payload.append('name', data.get('name'));
+  payload.append('email', data.get('email'));
 
-    const payload = new URLSearchParams();
-    payload.append('name', data.get('name'));
-    payload.append('email', data.get('email'));
-    payload.append('file', blobData);
-    payload.append('fileType', meta.match(/:(.*?);/)[1]);
-    payload.append('fileName', data.get('file').name);
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzGjSlXR_Dze4brHfDb9EpfaoVZcpHCS9lH6xqlSBTVplPX25Yv81tTKSIH4QJNkIHdtw/exec';
 
-    // 🔑 IMPORTANT: Replace this with your own Web App URL!
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxU5yfcDJRjkjYBmm_nUQJNMMju1G2BZ-baSMAzajahiCUDkYmI8KafH9KyTwEv33STyA/exec';
+  document.getElementById('status').textContent = '⏳ Submitting...';
 
-    fetch(WEB_APP_URL, {
-      method: 'POST',
-      body: payload
-    })
-    .then(r => r.json())
-    .then(res => {
-      document.getElementById('status').textContent =
-        res.result === 'success' ? '✅ Submitted!' : '❌ Error occurred.';
-    })
-    .catch(err => {
-      document.getElementById('status').textContent = '❌ ' + err;
-    });
-  };
-
-  reader.readAsDataURL(data.get('file'));
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    body: payload
+  })
+  .then(r => r.json())
+  .then(res => {
+    document.getElementById('status').textContent =
+      res.result === 'success' ? '✅ Submitted!' : '❌ Error occurred.';
+    if (res.result === 'success') form.reset();
+  })
+  .catch(err => {
+    document.getElementById('status').textContent = '❌ ' + err;
+  });
 });
